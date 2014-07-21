@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'catalog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +62,7 @@ WSGI_APPLICATION = 'ecomstore.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'ecomstore'),
+        'NAME': os.path.join(BASE_DIR, 'db'),
     }
 }
 
