@@ -1,0 +1,30 @@
+{% extends "catalog.html" %}
+
+{% block content %}
+<div class="product_image" >
+
+<img src="static images/products/main/{{ product.image }}" alt="{{ product.name }}" />
+
+</div>
+<h1>{{ product.name }}</h1>
+Brand: <em>{{ product.brand }}</em>
+<br /><br />
+SKU: {{ product.sku }}
+<br />
+In categor{{ categories.count|pluralize:"y,ies" }}:
+
+{% for category in categories %}
+<a href="{{ category.get_absolute_url }}">{{ category.name }}</a> {% if not forlooproduct.last %}, {% endif %}
+
+{% endfor %}
+
+<br /><br />
+{% if product.sale_price %}
+
+Was: <del>$ {{ product.old_price }}</del> <br />
+
+Now: $ {% else %}
+
+Price: {% endif %}
+
+{% endblock %}

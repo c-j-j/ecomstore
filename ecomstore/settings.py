@@ -26,6 +26,14 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'utils.context_processors.ecomstore'
+)
+
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog',
+    'utils',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,3 +97,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+SITE_NAME = 'Modern Musician'
+META_KEYWORDS = 'Music, instruments'
+META_DESCRIPTION = 'Online supplier of instruments'
