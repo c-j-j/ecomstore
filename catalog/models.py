@@ -20,7 +20,7 @@ class Category(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('catalog_catergory', (), {'category_slug': self.slug})
+        return ('catalog_category', (), {'category_slug': self.slug})
 
 class Product(models.Model):
     """ model class containing information about a product; instances of this class are what the user

@@ -1,4 +1,6 @@
 {% extends "catalog.html" %}
+{% load staticfiles %}
+
 
 {% block content %}
 <h1>{{ category.name }}</h1>
@@ -7,11 +9,12 @@
 {% for product in products %}
 <div class="product_thumbnail">
     <a href="{{ product.get_absolute_url }}">
-        <img src="static images/products/thumbnails/{{ product.image }}" alt="{{ product.name }}" class="bn"/>
+        <img src="{% static "images/products/thumbnails/"%}{{ product.image }}" alt="{{ product.name }}" class="bn"/>
+
+     <!--   <img src="static images/products/thumbnails/{{ product.image }}" alt="{{ product.name }}" class="bn"/>-->
         <br/>
         {{ product.name }}
     </a>
 </div>
-{% include 'tags/product_thumbnail.html' %}
 {% endfor %}
 {% endblock %}

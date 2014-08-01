@@ -1,9 +1,10 @@
 {% extends "catalog.html" %}
+{% load staticfiles %}
 
 {% block content %}
 <div class="product_image" >
 
-<img src="static images/products/main/{{ product.image }}" alt="{{ product.name }}" />
+<img src="{% static "images/products/main/"%}{{ product.image }}" alt="{{ product.name }}" />
 
 </div>
 <h1>{{ product.name }}</h1>
@@ -23,8 +24,8 @@ In categor{{ categories.count|pluralize:"y,ies" }}:
 
 Was: <del>$ {{ product.old_price }}</del> <br />
 
-Now: $ {% else %}
+Now: ${{product.price}}   {% else %}
 
-Price: {% endif %}
+Price: ${{product.price}} {% endif %}
 
 {% endblock %}

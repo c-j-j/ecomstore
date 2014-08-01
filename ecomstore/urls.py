@@ -10,3 +10,5 @@ urlpatterns = patterns('',
                        url(r'^', include('catalog.urls')),
 )
 
+handler404 = 'ecomstore.views.file_not_found_404'
+
