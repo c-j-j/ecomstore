@@ -8,6 +8,7 @@ urlpatterns = patterns('',
                        # Examples:
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^', include('catalog.urls')),
+                       url(r'^cart/', include('cart.urls'))
 )
 
 handler404 = 'ecomstore.views.file_not_found_404'
