@@ -1,4 +1,5 @@
 {% extends "catalog.html" %}
+{% load catalog_filters %}
 {% load staticfiles %}
 
 {% block content %}
@@ -29,6 +30,7 @@ Now: ${{product.price}}   {% else %}
 Price: ${{product.price}} {% endif %}
 
 <form method="post" action="." class="cart">
+    {% csrf_token %}
     {{form.as_p}}
     <br />
     <input type="submit" value="Add To Cart" name="submit" alt="Add To Cart"/>

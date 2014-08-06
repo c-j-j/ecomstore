@@ -9,6 +9,7 @@ from catalog.models import Category, Product
 
 def index(request, template_name="catalog/index.html"):
     page_title = 'Musical Instruments and Sheet Music'
+    categories = Category.objects.all()
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 
@@ -35,8 +36,8 @@ def show_product(request, product_slug, template_name="catalog/product.html"):
 
         if form.is_valid():
             cart.add_to_cart(request)
-            if request.sesson.test_cookie_worked():
-                request.sesson.delete_test_cookie()
+            if request.session.test_cookie_worked():
+                request.session.delete_test_cookie()
             url = urlresolvers.reverse('show_cart')
             return HttpResponseRedirect(url)
     else:
