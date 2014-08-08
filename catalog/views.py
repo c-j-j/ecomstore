@@ -9,7 +9,6 @@ from catalog.models import Category, Product
 
 def index(request, template_name="catalog/index.html"):
     page_title = 'Musical Instruments and Sheet Music'
-    categories = Category.objects.all()
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 

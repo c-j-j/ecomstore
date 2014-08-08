@@ -75,7 +75,7 @@ a.skip_link{
 	position:absolute;
 	left:-1000px;
 	top:-1000px;
-
+}
 /* start of chapter 3 added styles */
 a{
 	color:#98AC5E;
@@ -104,18 +104,21 @@ div.product_image{
 ul.errorlist{
 background-color:Red;color:White;
 }
+
 /* styles for shopping cart page */
 table#shopping_cart{
 width:100%;
 border-collapse:collapse;
 color:#616161;
 }
+
 h1,caption{
 text-align:left;
 font-size:x-large;
 margin-bottom:15px;
 color:Black;
 }
+
 th,td{
 text-align:left;
 padding:3px;
@@ -132,4 +135,32 @@ text-align:right;
 }
 a.cart{
 color:DarkOrange;
+}
+
+h3{
+    background-color:#98AC5E;
+    color:White;
+    padding:3px;
+    margin-bottom:6px
+}
+
+ul#categories{
+    list-style:none;
+}
+
+ul#categories li{
+    font-weight:bold;
+    color:#616161;
+}
+
+ul#categories li a{
+    text-decoration:underline;
+}
+
+div#footer a{
+    color:White;
+    font-size:small;
+    text-decoration:underline;
+    font-weight:normal;
+    margin-right:10px
 }

@@ -49,7 +49,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'catalog',
     'utils',
-    'cart'
+    'cart',
+    'django.contrib.sites',
+    'django.contrib.flatpages'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,6 +61,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
 
 ROOT_URLCONF = 'ecomstore.urls'
@@ -102,3 +105,4 @@ STATICFILES_DIRS = (
 SITE_NAME = 'Modern Musician'
 META_KEYWORDS = 'Music, instruments'
 META_DESCRIPTION = 'Online supplier of instruments'
+SITE_ID=1
