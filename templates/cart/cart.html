@@ -27,16 +27,7 @@
                     <th class="right" colspan="6">
                         <form method="post" action=".">
                             {% csrf_token %}
-                            <input type="hidden" name="submit" value="Google-Checkout" />
-                            <input type="image" name="Google Checkout" alt="Fast checkout through Google" src="http://sandbox.google.com/checkout/buttons/checkout.gif?merchant_id={{ merchant_id }}&w=180&h=46&style=white&variant=text&loc=en_US" height="46" width="180" />
-                        </form>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="right" colspan="6">
-                        <form method="post" action=".">
-                            {% csrf_token %}
-                            <input type="submit" name="submit" value="Authnet-Checkout" alt="Authnet-Checkout" />
+                            <input type="submit" name="submit" value="Checkout" alt="Dummy Checkout" />
                         </form>
                     </th>
                 </tr>
