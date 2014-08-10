@@ -1,8 +1,28 @@
 <ul>
-	<li><a href="/">Home</a></li>
-	<li><a href="/catalog">About</a></li>
-	<li><a href="/catalog">Privacy</a></li>
-	<li><a href="/catalog">Products</a></li>
-	<li><a href="/contact/">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/catalog">About</a></li>
+    <li><a href="/catalog">Privacy</a></li>
+    <li><a href="/catalog">Products</a></li>
+    <li><a href="/contact/">Contact</a></li>
+
+    <li>
+        <a href="{% url " my_account" %}">My Account</a>
+    </li>
 </ul>
+<div class="fr">
+    <ul>
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url register %}">Sign up</a>
+        </li>
+        <li>
+            <a href="{% url django.contrib.auth.views.login %}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
 <div class="cb"></div>

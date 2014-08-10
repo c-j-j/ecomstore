@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'checkout',
     'utils',
     'cart',
+    'accounts',
     'django.contrib.sites',
     'django.contrib.flatpages'
 )
@@ -102,8 +103,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
+ENABLE_SSL = False
 SITE_NAME = 'Modern Musician'
 META_KEYWORDS = 'Music, instruments'
 META_DESCRIPTION = 'Online supplier of instruments'
 SITE_ID=1
+LOGIN_REDIRECT_URL = 'accounts/my_account'
