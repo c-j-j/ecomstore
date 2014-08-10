@@ -4,16 +4,9 @@ from django.db import models
 from catalog.models import Product
 
 
-class Order(models.Model):
-
-    # each individual status
-    SUBMITTED = 1
-    PROCESSED = 2
-    SHIPPED = 3
-    CANCELLED = 4
-
-    # set of possible order statuses
-    ORDER_STATUSES = ((SUBMITTED,'Submitted'), (PROCESSED,'Processed'), (SHIPPED,'Shipped'), (CANCELLED,'Cancelled'),)
+class BaseOrderInfo(models.Model):
+    class Meta:
+        abstract = True
 
     # order info
     email = models.EmailField(max_length=50)
@@ -37,6 +30,18 @@ class Order(models.Model):
     billing_country = models.CharField(max_length=50)
     billing_zip = models.CharField(max_length=10)
 
+
+class Order(BaseOrderInfo):
+    # each individual status
+    SUBMITTED = 1
+    PROCESSED = 2
+    SHIPPED = 3
+    CANCELLED = 4
+
+    # set of possible order statuses
+    ORDER_STATUSES = (
+    (SUBMITTED, 'Submitted'), (PROCESSED, 'Processed'), (SHIPPED, 'Shipped'), (CANCELLED, 'Cancelled'),)
+
     date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=ORDER_STATUSES, default=SUBMITTED)
     ip_address = models.IPAddressField()
@@ -57,11 +62,10 @@ class Order(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('order_details', (), { 'order_id': self.id })
+        return ('order_details', (), {'order_id': self.id})
 
 
 class OrderItem(models.Model):
-
     product = models.ForeignKey(Product)
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(max_digits=9, decimal_places=2)

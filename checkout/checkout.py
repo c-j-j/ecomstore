@@ -1,3 +1,4 @@
+from accounts import profile
 from cart import cart
 from checkout import credit_card_agent
 from checkout.forms import CheckoutForm
@@ -47,6 +48,10 @@ def create_order(request, transaction_id):
     order.transaction_id = transaction_id
     order.ip_address = request.META.get('REMOTE_ADDR')
     order.user = None
+
+    if request.user.is_authenticated():
+        order.user = request.user
+
     order.status = Order.SUBMITTED
     order.save()
 
@@ -64,5 +69,7 @@ def create_order(request, transaction_id):
         # all set, empty cart
         cart.empty_cart(request)
 
+    if request.user.is_authenticated():
+        profile.set(request)
     # return the new order object
     return order
