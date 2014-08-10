@@ -1,0 +1,1 @@
+C:\Users\Chris\PycharmProjects\Recommendor\env2\Scripts\activate.bat

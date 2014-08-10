@@ -6,10 +6,10 @@ from checkout.models import Order, OrderItem
 
 def process(request):
     # Transaction results
-    APPROVED = '1'
-    DECLINED = '2'
-    ERROR = '3'
-    HELD_FOR_REVIEW = '4'
+    APPROVED = 1
+    DECLINED = 2
+    ERROR = 3
+    HELD_FOR_REVIEW = 4
 
     card_num = request.POST.get('credit_card_number', '')
     exp_month = request.POST.get('credit_card_expire_month', '')
