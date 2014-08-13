@@ -5,7 +5,7 @@
 {% block content %}
 <div class="product_image" >
 
-<img src="{% static "images/products/main/"%}{{ product.image }}" alt="{{ product.name }}" />
+<img src="{% static product.image %}" alt="{{ product.name }}" />
 
 </div>
 <h1>{{ product.name }}</h1>

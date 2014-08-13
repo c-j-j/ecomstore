@@ -8,12 +8,11 @@
 <br/><br/>
 {% for product in products %}
 <div class="product_thumbnail">
-    <a href="{{ product.get_absolute_url }}">
-        <img src="{% static "images/products/thumbnails/"%}{{ product.image }}" alt="{{ product.name }}" class="bn"/>
+    <h4>{{ product.name }}</h4>
 
-     <!--   <img src="static images/products/thumbnails/{{ product.image }}" alt="{{ product.name }}" class="bn"/>-->
-        <br/>
-        {{ product.name }}
+    <a href="{{ product.get_absolute_url }}">
+        <img src="{% static product.thumbnail %}" alt="{{ product.name }}" class="bn"/>
+            <br/>
     </a>
 </div>
 {% endfor %}
