@@ -1,28 +1,52 @@
-<ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/catalog">About</a></li>
-    <li><a href="/catalog">Privacy</a></li>
-    <li><a href="/catalog">Products</a></li>
-    <li><a href="/contact/">Contact</a></li>
+{% load catalog_tags %}
 
-    <li>
-        <a href="{% url "my_account" %}">My Account</a>
-    </li>
-</ul>
-<div class="fr">
-    <ul>
-        {% if user.is_authenticated %}
-        <li>
-            <a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
-        </li>
-        {% else %}
-        <li>
-            <a href="{% url "register" %}">Sign up</a>
-        </li>
-        <li>
-            <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
-        </li>
-        {% endif %}
-    </ul>
-</div>
-<div class="cb"></div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Online Shop</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/catalog">About</a></li>
+                <li><a href="/catalog">Privacy</a></li>
+                <li><a href="/catalog">Products</a></li>
+                <li><a href="/contact/">Contact</a></li>
+
+                <li>
+                    <a href="{% url "my_account" %}">My Account</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url "django.contrib.auth.views.logout" %}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url "register" %}">Sign up</a>
+                </li>
+                <li>
+                    <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+                </li>
+                {% endif %}
+
+                <li>
+                    {% cart_box request %}
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
