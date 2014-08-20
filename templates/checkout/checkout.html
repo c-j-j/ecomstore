@@ -18,14 +18,14 @@
     {% csrf_token %}
     <fieldset class="checkout">
         <legend>Contact Info</legend>
-        <table>
+        <table class="table table-hover">
             {% form_table_row form.email %}
             {% form_table_row form.phone %}
         </table>
     </fieldset>
     <fieldset class="checkout">
         <legend>Shipping Info</legend>
-        <table>
+        <table class="table table-hover">
             {% form_table_row form.shipping_name %}
             {% form_table_row form.shipping_address_1 %}
             {% form_table_row form.shipping_address_2 %}
@@ -37,7 +37,7 @@
     </fieldset>
     <fieldset class="checkout">
         <legend>Billing Info</legend>
-        <table>
+        <table class="table table-hover">
             {% form_table_row form.billing_name %}
             {% form_table_row form.billing_address_1 %}
             {% form_table_row form.billing_address_2 %}
@@ -49,7 +49,7 @@
     </fieldset>
     <fieldset class="checkout">
         <legend>Credit Card Info</legend>
-        <table>
+        <table class="table table-hover">
             {% form_table_row form.credit_card_number %}
             {% form_table_row form.credit_card_type %}
             {% form_table_row form.credit_card_expire_month %}
@@ -57,7 +57,7 @@
             {% form_table_row form.credit_card_cvv %}
         </table>
     </fieldset>
-    <table>
+    <table class="table table-hover">
         <tr>
             <th colspan="2"><input type="submit" value="Place Order" class="submit"/></th>
         </tr>

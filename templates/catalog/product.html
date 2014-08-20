@@ -2,12 +2,14 @@
 {% load catalog_filters %}
 {% load staticfiles %}
 
+        <div class="row">
 {% block content %}
-<div class="product_image" >
+<div class="col-lg-6">
+                <br />
 
 <img src="{% static product.image %}" alt="{{ product.name }}" />
-
 </div>
+<div class="col-lg-6">
 <h1>{{ product.name }}</h1>
 Brand: <em>{{ product.brand }}</em>
 <br /><br />
@@ -23,11 +25,11 @@ In categor{{ categories.count|pluralize:"y,ies" }}:
 <br /><br />
 {% if product.sale_price %}
 
-Was: <del>$ {{ product.old_price }}</del> <br />
+Was: <del>{{ product.old_price|currency }}</del> <br />
 
-Now: ${{product.price}}   {% else %}
+Now: {{product.price|currency}}   {% else %}
 
-Price: ${{product.price}} {% endif %}
+Price: {{product.price|currency}} {% endif %}
 
 <form method="post" action="." class="cart">
     {% csrf_token %}
@@ -37,3 +39,5 @@ Price: ${{product.price}} {% endif %}
 </form>
 
 {% endblock %}
+</div>
+            </div>
