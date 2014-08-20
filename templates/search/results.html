@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load staticfiles %}
+{% load search_tags %}
+
+<h1>Search Results for '{{q}}'</h1>
+{% for product in results %}
+{% include 'tags/product_thumbnail.html' %}
+{% empty %}
+No products found
+{% endfor %}
+{% pagination_links request paginator %}
+
+ {% endblock %}

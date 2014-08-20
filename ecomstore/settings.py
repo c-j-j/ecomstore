@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'checkout',
     'utils',
     'cart',
+    'search',
     'accounts',
     'django.contrib.sites',
     'django.contrib.flatpages'
