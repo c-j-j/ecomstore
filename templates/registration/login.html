@@ -1,12 +1,14 @@
-{% extends catalog.html %}
+{% extends "base.html" %}
 {% block content %}
-{$ if form.errors %}
+{% if form.errors %}
 <ul class="errorlist">
     <li>You entered an invalid username or password</li>
 </ul>
 <br/>
 {% endif %}
-<form method="post" action="{% url django.contrib.auth.views.logic %}">
+<form method="post" action="{% url "django.contrib.auth.views.login" %}">
+
+    {% csrf_token %}
     <table summary="Login" id="login">
         <caption>Login</caption>
         <tr>
