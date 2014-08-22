@@ -5,9 +5,15 @@ from django.template import RequestContext
 from cart import cart
 from catalog.forms import ProductAddToCartForm
 from catalog.models import Category, Product
+from ecomstore.settings import PRODUCTS_PER_ROW
+from stats import stats
 
 
 def index(request, template_name="catalog/index.html"):
+    search_recs = stats.recommended_from_search(request)
+    featured = Product.featured.all()[0:PRODUCTS_PER_ROW]
+    recently_viewed = stats.get_recently_viewed_products(request)
+    viewed_recs = stats.recommended_from_views(request)
     page_title = 'Musical Instruments and Sheet Music'
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
@@ -24,6 +30,10 @@ def show_category(request, category_slug, template_name="catalog/category.html")
 
 def show_product(request, product_slug, template_name="catalog/product.html"):
     product = get_object_or_404(Product, slug=product_slug)
+
+    from stats import stats
+    stats.log_product_view(request,product)
+
     categories = product.categories.filter(is_active=True)
     page_title = product.name
     meta_keywords = product.meta_keywords

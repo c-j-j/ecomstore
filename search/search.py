@@ -11,6 +11,8 @@ def store(request, q):
         term = SearchTerm()
         term.q = q
         term.ip_address = request.META.get('REMOTE_ADDR')
+        from stats import stats
+        term.tracking_id = stats.tracking_id(request)
         term.user = None
 
         if request.user.is_authenticated():

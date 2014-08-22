@@ -1,4 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 
 
 class ActiveCategoryManager(models.Manager):
@@ -40,9 +42,14 @@ class ActiveProductManager(models.Manager):
         return super(ActiveProductManager, self).get_queryset().filter(is_active=True)
 
 
+class FeaturedProductManager(models.Manager):
+    def all(self):
+        return super(FeaturedProductManager, self).all().filter(is_active=True).filter(is_featured=True)
+
 class Product(models.Model):
     objects = models.Manager()
     active = ActiveProductManager()
+    featured = FeaturedProductManager()
 
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True,
@@ -86,3 +93,26 @@ class Product(models.Model):
             return self.price
         else:
             return None
+
+    def cross_sells(self):
+        from checkout.models import Order, OrderItem
+        orders = Order.objects.filter(orderitem__product=self)
+        order_items = OrderItem.objects.filter(order__in=orders).exclude(product=self)
+        return Product.active.filter(orderitem__in=order_items).distinct()
+
+    def cross_sells_user(self):
+        from checkout.models import OrderItem
+        users = User.objects.filter(order__orderitem__product=self)
+        items = OrderItem.objects.filter(order__user__in=users).exclude(product=self)
+        return Product.objects.filter(orderitem__in=items).distinct()
+
+    def cross_sells_hybrid(self):
+        from checkout.models import Order, OrderItem
+        orders = Order.objects.filter(orderitem__product=self)
+        users = User.objects.filter(order__orderitem__product=self)
+
+        order_items = OrderItem.objects.filter(Q(order__in=orders) | Q(order__user__in=users)).exclude(product=self)
+        return Product.active.filter(orderitem__in=order_items).distinct()[:5]
+
+
+

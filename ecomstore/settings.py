@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'checkout',
     'utils',
     'cart',
+    'stats',
     'search',
     'accounts',
     'django.contrib.sites',
@@ -111,3 +112,4 @@ META_DESCRIPTION = 'Online supplier of instruments'
 SITE_ID=1
 LOGIN_REDIRECT_URL = '/accounts/my_account'
 AUTH_PROFILE_MODULE = 'accounts.userprofile'
+PRODUCTS_PER_ROW=4

@@ -9,11 +9,11 @@ CART_ID_SESSION_KEY = 'cart_id'
 
 def _cart_id(request):
     if request.session.get(CART_ID_SESSION_KEY, '') == '':
-        request.session[CART_ID_SESSION_KEY] = _generate_cart_id()
+        request.session[CART_ID_SESSION_KEY] = generate_random_id()
     return request.session[CART_ID_SESSION_KEY]
 
 
-def _generate_cart_id():
+def generate_random_id():
     cart_id = ''
     characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     cart_id_length = 50

@@ -1,43 +1,51 @@
 {% extends "base.html" %}
 {% load catalog_filters %}
 {% load staticfiles %}
+ {% block content %}
+<div class="row">
 
+    <div class="col-lg-6">
+        <br/>
+
+        <img src="{% static product.image %}" alt="{{ product.name }}"/>
+    </div>
+    <div class="col-lg-6">
+        <h1>{{ product.name }}</h1>
+        Brand: <em>{{ product.brand }}</em>
+        <br/><br/>
+        SKU: {{ product.sku }}
+        <br/>
+        In categor{{ categories.count|pluralize:"y,ies" }}:
+
+        {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a> {% if not forlooproduct.last %}, {% endif %}
+
+        {% endfor %}
+
+        <br/><br/>
+        {% if product.sale_price %}
+
+        Was:
+        <del>{{ product.old_price|currency }}</del>
+        <br/>
+
+        Now: {{product.price|currency}} {% else %}
+
+        Price: {{product.price|currency}} {% endif %}
+
+        <form method="post" action="." class="cart">
+            {% csrf_token %}
+            {{form.as_p}}
+            <br/>
+            <input type="submit" value="Add To Cart" name="submit" alt="Add To Cart"/>
+        </form>
+    </div>
+</div>
         <div class="row">
-{% block content %}
-<div class="col-lg-6">
-                <br />
-
-<img src="{% static product.image %}" alt="{{ product.name }}" />
-</div>
-<div class="col-lg-6">
-<h1>{{ product.name }}</h1>
-Brand: <em>{{ product.brand }}</em>
-<br /><br />
-SKU: {{ product.sku }}
-<br />
-In categor{{ categories.count|pluralize:"y,ies" }}:
-
-{% for category in categories %}
-<a href="{{ category.get_absolute_url }}">{{ category.name }}</a> {% if not forlooproduct.last %}, {% endif %}
-
-{% endfor %}
-
-<br /><br />
-{% if product.sale_price %}
-
-Was: <del>{{ product.old_price|currency }}</del> <br />
-
-Now: {{product.price|currency}}   {% else %}
-
-Price: {{product.price|currency}} {% endif %}
-
-<form method="post" action="." class="cart">
-    {% csrf_token %}
-    {{form.as_p}}
-    <br />
-    <input type="submit" value="Add To Cart" name="submit" alt="Add To Cart"/>
-</form>
-
+            <h3>Related Products</h3>
+                {% for product in product.cross_sells_hybrid %}
+                {% include 'tags/product_thumbnail.html' %}
+                {% empty %}
+                No related products found.
+                {% endfor %}</div>
 {% endblock %}
-</div>
-            </div>
