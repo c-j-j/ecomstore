@@ -38,7 +38,7 @@ def my_account(request, template_name="registration/my_account.html"):
 
 
 @login_required
-def order_details(request, order_id, template_name="registration/my_account.html"):
+def order_details(request, order_id, template_name="registration/order_details.html"):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     page_title = 'Order Details for Order #' + order_id
     order_items = OrderItem.objects.filter(order=order)

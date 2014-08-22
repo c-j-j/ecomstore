@@ -109,5 +109,5 @@ SITE_NAME = 'Modern Musician'
 META_KEYWORDS = 'Music, instruments'
 META_DESCRIPTION = 'Online supplier of instruments'
 SITE_ID=1
-LOGIN_REDIRECT_URL = 'accounts/my_account'
+LOGIN_REDIRECT_URL = '/accounts/my_account'
 AUTH_PROFILE_MODULE = 'accounts.userprofile'
